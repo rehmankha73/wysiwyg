@@ -49,13 +49,11 @@
 
           <v-row>
             <v-col cols="12">
-              <v-textarea
-                  v-model="description"
-                  :rules="[required('Description is required!')]"
-                  filled
-                  label="Description"
-                  name="input-7-4"
-              ></v-textarea>
+              <vue-editor
+                  :class="[!description && hasError? 'invalid' : '']"
+                  v-model="description" ref="editor"
+              />
+              <span style="color:red" v-if="!description && hasError">Description field is also required</span>
             </v-col>
 
           </v-row>
@@ -68,7 +66,7 @@
                   type="button"
                   @click="submitForm"
               >
-                Add Now!
+                Add Now
               </v-btn>
             </v-col>
           </v-row>
@@ -80,16 +78,22 @@
 
 <script>
 import {required} from "@/utils/validators"
+import { VueEditor } from "vue2-editor";
 
 export default {
   name: 'HomeView',
+  components: {
+    VueEditor
+  },
   data() {
     return {
+      hasError: false,
       title: '',
       slug: '',
       image: '',
       image_url: '',
       description: '',
+
     }
   },
   watch: {
@@ -101,6 +105,11 @@ export default {
     required,
     submitForm() {
       if (this.$refs.form.validate()) {
+        if(this.description === '') {
+          this.hasError = true
+          return;
+        }
+
         let _data = {
           title: this.title,
           slug: this.slug,
@@ -109,8 +118,9 @@ export default {
           description: this.description
         }
 
-        this.$store.dispatch('addProduct', _data);
+        this.$store.dispatch('addBlog', _data);
         this.resetForm();
+        this.$router.push('/blog-details')
       }
     },
     resetForm() {

@@ -4,24 +4,24 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-    product: {}
+    blog: {}
 }
 
 const getters = {
-    getProduct(state) {
-        return state.product
+    getBlog(state) {
+        return state.blog
     }
 }
 
 const mutations = {
-    setProduct(state, _product) {
-        state.product = _product
+    setBlog(state, _blog) {
+        state.blog = _blog
     }
 }
 
 const actions = {
-    addProduct(context, _payload) {
-        context.commit('setProduct', _payload)
+    addBlog(context, _payload) {
+        context.commit('setBlog', _payload)
         console.log('add in store')
     }
 }
