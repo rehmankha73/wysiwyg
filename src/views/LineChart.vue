@@ -1,7 +1,7 @@
 <template>
   <v-container id="chart">
     <span class="text-subtitle-1 mb-4">Implementation of Apex-chart in vue components</span>
-    <v-card v-if="false" class="pa-4 my-10">
+    <v-card v-if="true" class="pa-4 my-10">
       <span class="text-h4"> Line Chart</span>
       <apexchart
           :options="line_chart.chartOptions"
@@ -12,7 +12,7 @@
       ></apexchart>
     </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
+    <v-card v-if="true" class="pa-4 my-10">
       <span class="text-h4"> Column/Bar Chart</span>
       <apexchart
           :options="line_chart.chartOptions"
@@ -22,7 +22,7 @@
       ></apexchart>
     </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
+    <v-card v-if="true" class="pa-4 my-10">
       <span class="text-h4"> Area Chart</span>
       <apexchart
           :options="line_chart.chartOptions"
@@ -31,22 +31,22 @@
           type="area"></apexchart>
     </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
+    <v-card v-if="true" class="pa-4 my-10">
       <span class="text-h4"> Column Chart</span>
       <apexchart :options="column_chart.chartOptions" :series="column_chart.series" height="350" type="bar"></apexchart>
     </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
+    <v-card v-if="true" class="pa-4 my-10">
       <span class="text-h4"> Bar Chart</span>
       <apexchart :options="line_chart.chartOptions" :series="line_chart.series" height="430" type="bar"></apexchart>
     </v-card>
 
-    <v-card v-if="false" class="pa-4 my -10">
+    <v-card v-if="true" class="pa-4 my -10">
       <span class="text-h4">Mixed Type Chart</span>
       <apexchart :options="mixed.chartOptions" :series="mixed.series" height="350" type="line"></apexchart>
     </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
+    <v-card v-if="true" class="pa-4 my-10">
       <span class="text-h4">Pie Type Chart</span>
       <apexchart type="pie" width="380" :options="pie.chartOptions" :series="pie.series"></apexchart>
     </v-card>
