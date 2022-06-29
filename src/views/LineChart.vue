@@ -1,87 +1,64 @@
 <template>
   <div id="chart">
     <h2> This is chart page!</h2>
-    <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+    <apexchart
+        :options="chartOptions"
+        :series="series"
+        height="350"
+        type="bar"
+    ></apexchart>
+     {{ years }} <br>
+     {{ populations }}
   </div>
 </template>
 
 <script>
+// import dayjs from 'dayjs'
+import axios from 'axios';
 
 export default {
   name: "LineChart",
+
+  mounted() {
+    axios.get('https://datausa.io/api/data?drilldowns=Nation&measures=Population')
+        .then((response) => {
+          this.api_data = response.data.data
+
+          this.years = this.api_data.map(y => y['Year'])
+          console.log(this.years)
+
+          this.populations = this.api_data.map(y => y['Population'])
+          console.log(this.populations)
+
+          this.updateData();
+        })
+        .catch((error) => {
+          console.log(error, 'error')
+        })
+  },
   data() {
     return {
+      api_data: null,
+      years: [],
+      populations: [],
       series: [{
-        name: 'Inflation',
-        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
+        name: 'Populations',
+        data: [1,2,3,4,5,6,7],
+        // data: this.populations ? this.populations : [],
       }],
-      chartOptions: {
-        chart: {
-          height: 350,
-          type: 'bar',
-        },
-        plotOptions: {
-          bar: {
-            borderRadius: 10,
-            dataLabels: {
-              position: 'top', // top, center, bottom
-            },
-          }
-        },
-        dataLabels: {
-          enabled: true,
-          formatter: function (val) {
-            return val + "%";
-          },
-          offsetY: -20,
-          style: {
-            fontSize: '12px',
-            colors: ["#304758"]
-          }
-        },
 
+      chartOptions: {
         xaxis: {
-          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          categories: [1,2,3,4,5,6,7],
           position: 'top',
           axisBorder: {
             show: false
           },
-          axisTicks: {
-            show: false
-          },
-          crosshairs: {
-            fill: {
-              type: 'gradient',
-              gradient: {
-                colorFrom: '#D8E3F0',
-                colorTo: '#BED1E6',
-                stops: [0, 100],
-                opacityFrom: 0.4,
-                opacityTo: 0.5,
-              }
-            }
-          },
-          tooltip: {
-            enabled: true,
-          }
-        },
-        yaxis: {
-          axisBorder: {
-            show: false
-          },
-          axisTicks: {
-            show: false,
-          },
-          labels: {
-            show: false,
-            formatter: function (val) {
-              return val + "%";
-            }
-          }
-
+          // categories: [2012,2013,2014,2015,2016,2017,2018],
+          // categories: this.years ? this.years : [],
         },
         title: {
-          text: 'Monthly Inflation in Argentina, 2002',
+          text: 'Populations Data of US',
           floating: true,
           offsetY: 330,
           align: 'center',
@@ -92,9 +69,31 @@ export default {
       },
     }
   },
+  methods: {
+    updateData() {
+      // const max = 90;
+      // const min = 20;
+      // const newData = this.series[0].data.map(() => {
+      //   return Math.floor(Math.random() * (max - min + 1)) + min
+      // })
 
-  mounted() {
-    console.log('chart page')
+      // const colors = ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0']
+
+      // Make sure to update the whole options config and not just a single property to allow the Vue watch catch the change.
+      // this.chartOptions = {
+      //   colors: [colors[Math.floor(Math.random()*colors.length)]]
+      // };
+      // In the same way, update the series option
+      this.series = [{
+        data: this.populations
+      }]
+
+      this.chartOptions = {
+        xaxis: {categories: this.years}
+        };
+
+      console.log(this.chartOptions)
+    }
   }
 }
 </script>
