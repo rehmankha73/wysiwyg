@@ -3,11 +3,16 @@
     <h1>Reusable Components!</h1>
 
     <v-card class="pa-10">
-      <RLoginForm
-          forgotPasswordLink="/"
-          :onSubmit="() => {}"
-          @onSuccess="success()"
-      />
+
+
+
+<!--      <RImageCarousel />-->
+
+<!--      <RLoginForm-->
+<!--          forgotPasswordLink="/"-->
+<!--          :onSubmit="() => {}"-->
+<!--          @onSuccess="success()"-->
+<!--      />-->
 
 <!--      <RTextInput-->
 <!--          class="my-2"-->
@@ -27,14 +32,16 @@
 <script>
 // import RTextInput from "@/components/RTextInput";
 // import RSelectInput from "@/components/RSelectInput";
-import RLoginForm from "@/components/RLoginForm";
+// import RLoginForm from "@/components/RLoginForm";
+// import RImageCarousel from "@/components/RImageCarousel";
 
 export default {
   name: "ReusableComponents",
   components: {
     // RTextInput,
     // RSelectInput,
-    RLoginForm,
+    // RLoginForm,
+    // RImageCarousel
   },
   data() {
     return {

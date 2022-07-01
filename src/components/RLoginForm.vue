@@ -1,6 +1,5 @@
 <template>
   <v-card class="pa-4 container-setting">
-
     <v-form ref="form" :value="validity" @submit.prevent="onSubmitForm">
       <img alt="logo" class="mx-auto d-block" height="100" src="../assets/logo.png" width="120"/>
       <section class="px-4 mt-10">
