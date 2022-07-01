@@ -1,34 +1,40 @@
 <template>
   <v-container>
     <h1>Reusable Components!</h1>
-    {{ name }}
+
     <v-card class="pa-10">
-      <RTextInput
-          class="my-2"
-          v-model="name"
-          label="Name"
+      <RLoginForm
+          forgotPasswordLink="/"
+          :onSubmit="() => {}"
+          @onSuccess="success()"
       />
 
+<!--      <RTextInput-->
+<!--          class="my-2"-->
+<!--          v-model="name"-->
+<!--          label="Name"-->
+<!--      />-->
 
-      <RSelectInput
-          class="my-2"
-          :options="options ? options : []"
-      />
-
+<!--      <RSelectInput-->
+<!--          class="my-2"-->
+<!--          :options="options ? options : []"-->
+<!--      />-->
 
     </v-card>
   </v-container>
 </template>
 
 <script>
-import RTextInput from "@/components/RTextInput";
-import RSelectInput from "@/components/RSelectInput";
+// import RTextInput from "@/components/RTextInput";
+// import RSelectInput from "@/components/RSelectInput";
+import RLoginForm from "@/components/RLoginForm";
 
 export default {
   name: "ReusableComponents",
   components: {
-    RTextInput,
-    RSelectInput,
+    // RTextInput,
+    // RSelectInput,
+    RLoginForm,
   },
   data() {
     return {
@@ -42,6 +48,11 @@ export default {
         {value: 'bananas', text: 'Bananas'},
         {value: 'peaches', text: 'Peaches'},
       ]
+    }
+  },
+  methods: {
+    success() {
+      console.log('Form Submitted successfully!')
     }
   }
 }
