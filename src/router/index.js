@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Chart from '@/views/LineChart'
+import Reusable from '@/views/ReusableComponents'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     name: 'Chart',
     component: Chart
   },
+  {
+    path: '/components',
+    name: 'Components',
+    component: Reusable,
+  }
 ]
 
 const router = new VueRouter({
