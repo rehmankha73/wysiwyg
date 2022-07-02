@@ -1,6 +1,7 @@
 <template>
   <div>
-    <select class="select-style">
+    {{ value }}
+    <select class="select-style" :value="value" @change="$emit('value', $event.target.value)">
       <option v-for="(option, key) in options" :key="key" :value="option.value">{{ option.text }}</option>
     </select>
   </div>
@@ -9,12 +10,24 @@
 <script>
 export default {
   name: "RSelectInput",
+  model: {
+    prop: ['value'],
+    event: ['value']
+  },
   props: {
+    value: {
+      type: [String, Number],
+    },
     options: {
       type: Array,
       required: true
     }
-  }
+  },
+   watch: {
+    value(value) {
+      console.log(value, 'value')
+    }
+   }
 }
 </script>
 

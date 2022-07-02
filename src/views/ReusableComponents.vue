@@ -20,25 +20,27 @@
 <!--          @onSuccess="success()"-->
 <!--      />-->
 
-      {{ name }}
-      <RTextInput
-          class="my-2"
-          v-model="name"
-          label="Name"
-      />
-
-<!--      <RSelectInput-->
+<!--      {{ name }}-->
+<!--      <RTextInput-->
 <!--          class="my-2"-->
-<!--          :options="options ? options : []"-->
+<!--          v-model="name"-->
+<!--          label="Name"-->
 <!--      />-->
+
+      {{ fruit }}
+      <RSelectInput
+          class="my-2"
+          v-model="fruit"
+          :options="options ? options : []"
+      />
 
     </v-card>
   </v-container>
 </template>
 
 <script>
-import RTextInput from "@/components/RTextInput";
-// import RSelectInput from "@/components/RSelectInput";
+// import RTextInput from "@/components/RTextInput";
+import RSelectInput from "@/components/RSelectInput";
 // import RLoginForm from "@/components/RLoginForm";
 // import RImageCarousel from "@/components/RImageCarousel";
 // import RFormTagInput from "@/components/RFormTagInput";
@@ -47,8 +49,8 @@ import RTextInput from "@/components/RTextInput";
 export default {
   name: "ReusableComponents",
   components: {
-    RTextInput,
-    // RSelectInput,
+    // RTextInput,
+    RSelectInput,
     // RLoginForm,
     // RImageCarousel,
     // RFormTagInput,
@@ -57,6 +59,7 @@ export default {
   data() {
     return {
       name: '',
+      fruit: '',
       options: [
         {value: 'apple', text: 'Apple'},
         {value: 'pine-apple', text: 'Pine Apple'},
