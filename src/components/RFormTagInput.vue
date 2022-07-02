@@ -1,5 +1,6 @@
 <template>
-  <section class="border container-setting pa-4">
+  <section class="container-setting pa-4">
+    <h5>Multiple Tags Selector</h5>
     <v-text-field
         id="parent"
         v-model="items"
@@ -37,13 +38,18 @@
       </template>
     </v-text-field>
 
-
-    <v-text-field
-        hide-details
+    <v-combobox
+        v-model="items_array"
+        class="mt-4"
         label="Tags"
-        placeholder="You can select multiple tags."
+        placeholder="You can select multiple tags"
+        multiple
         solo
-    ></v-text-field>
+        append-icon=""
+        dense
+        :deletable-chips="true"
+        :small-chips="true"
+    ></v-combobox>
   </section>
 
 <!--  <section class="border container-setting pa-4">-->
@@ -92,7 +98,6 @@ export default {
   },
   mounted() {
     const field = document.getElementsByClassName('v-input__slot')[0];
-    console.log(field, 'parent')
     field.style.display = 'flex';
     field.style.flexWrap = 'wrap';
   },
