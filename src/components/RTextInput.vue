@@ -2,7 +2,8 @@
   <div>
     <label v-if="label" :for="label">{{ label }}</label>
     <input
-        v-model="modelValue"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
         class="input-style"
         :class="classes"
         :id="label"
@@ -48,17 +49,17 @@ export default {
       }
     }
   },
-  watch: {
-    modelValue(newVal) {
-      this.$emit('input', newVal)
-    },
-    value(newVal) {
-      this.modelValue = newVal
-    },
-  },
-  created() {
-    this.modelValue = this.value
-  },
+  // watch: {
+  //   modelValue(newVal) {
+  //     this.$emit('input', newVal)
+  //   },
+  //   value(newVal) {
+  //     this.modelValue = newVal
+  //   },
+  // },
+  // created() {
+  //   this.modelValue = this.value
+  // },
 }
 </script>
 

@@ -4,9 +4,9 @@
 
     <v-card class="pa-10">
 
-      <RProfileSection
-          @updateProfile="updateProfile"
-      />
+<!--      <RProfileSection-->
+<!--          @updateProfile="updateProfile"-->
+<!--      />-->
 
 
 <!--      <RFormTagInput-->
@@ -20,11 +20,12 @@
 <!--          @onSuccess="success()"-->
 <!--      />-->
 
-<!--      <RTextInput-->
-<!--          class="my-2"-->
-<!--          v-model="name"-->
-<!--          label="Name"-->
-<!--      />-->
+      {{ name }}
+      <RTextInput
+          class="my-2"
+          v-model="name"
+          label="Name"
+      />
 
 <!--      <RSelectInput-->
 <!--          class="my-2"-->
@@ -36,22 +37,22 @@
 </template>
 
 <script>
-// import RTextInput from "@/components/RTextInput";
+import RTextInput from "@/components/RTextInput";
 // import RSelectInput from "@/components/RSelectInput";
 // import RLoginForm from "@/components/RLoginForm";
 // import RImageCarousel from "@/components/RImageCarousel";
 // import RFormTagInput from "@/components/RFormTagInput";
-import RProfileSection from "@/components/RProfileSection";
+// import RProfileSection from "@/components/RProfileSection";
 
 export default {
   name: "ReusableComponents",
   components: {
-    // RTextInput,
+    RTextInput,
     // RSelectInput,
     // RLoginForm,
     // RImageCarousel,
     // RFormTagInput,
-    RProfileSection
+    // RProfileSection
   },
   data() {
     return {
