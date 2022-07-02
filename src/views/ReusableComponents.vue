@@ -3,9 +3,15 @@
     <h1>Reusable Components!</h1>
 
     <v-card class="pa-10">
-      <RFormTagInput
-          @selectItems="getSelectedItem"
+
+      <RProfileSection
+          @updateProfile="updateProfile"
       />
+
+
+<!--      <RFormTagInput-->
+<!--          @selectItems="getSelectedItem"-->
+<!--      />-->
 <!--      <RImageCarousel />-->
 
 <!--      <RLoginForm-->
@@ -34,7 +40,8 @@
 // import RSelectInput from "@/components/RSelectInput";
 // import RLoginForm from "@/components/RLoginForm";
 // import RImageCarousel from "@/components/RImageCarousel";
-import RFormTagInput from "@/components/RFormTagInput";
+// import RFormTagInput from "@/components/RFormTagInput";
+import RProfileSection from "@/components/RProfileSection";
 
 export default {
   name: "ReusableComponents",
@@ -43,7 +50,8 @@ export default {
     // RSelectInput,
     // RLoginForm,
     // RImageCarousel,
-    RFormTagInput
+    // RFormTagInput,
+    RProfileSection
   },
   data() {
     return {
@@ -61,10 +69,13 @@ export default {
   },
   methods: {
     success() {
-      console.log('Form Submitted successfully!')
+      console.log('onSuccess from RLoginForm component')
     },
     getSelectedItem(items) {
-      console.log(items, 'get Selected Items from components')
+      console.log(items, 'get Selected Items from RFormTagInput component')
+    },
+    updateProfile(user) {
+      console.log(user,'user from RProfile component')
     }
   }
 }
