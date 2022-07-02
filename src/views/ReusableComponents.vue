@@ -3,9 +3,9 @@
     <h1>Reusable Components!</h1>
 
     <v-card class="pa-10">
-
-
-
+      <RFormTagInput
+          @selectItems="getSelectedItem"
+      />
 <!--      <RImageCarousel />-->
 
 <!--      <RLoginForm-->
@@ -34,6 +34,7 @@
 // import RSelectInput from "@/components/RSelectInput";
 // import RLoginForm from "@/components/RLoginForm";
 // import RImageCarousel from "@/components/RImageCarousel";
+import RFormTagInput from "@/components/RFormTagInput";
 
 export default {
   name: "ReusableComponents",
@@ -41,7 +42,8 @@ export default {
     // RTextInput,
     // RSelectInput,
     // RLoginForm,
-    // RImageCarousel
+    // RImageCarousel,
+    RFormTagInput
   },
   data() {
     return {
@@ -60,6 +62,9 @@ export default {
   methods: {
     success() {
       console.log('Form Submitted successfully!')
+    },
+    getSelectedItem(items) {
+      console.log(items, 'get Selected Items from components')
     }
   }
 }
