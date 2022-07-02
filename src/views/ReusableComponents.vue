@@ -1,16 +1,16 @@
 <template>
   <v-container>
     <h1>Reusable Components!</h1>
-    <v-card class="pa-10">
-      <v-radio-group v-model="selected_component">
-        <v-radio
-            v-for="(component, key) in components"
-            :key="key"
-            :label="component.text"
-            :value="component.value"
-        ></v-radio>
-      </v-radio-group>
-    </v-card>
+<!--    <v-card class="pa-10">-->
+<!--      <v-radio-group v-model="selected_component">-->
+<!--        <v-radio-->
+<!--            v-for="(component, key) in components"-->
+<!--            :key="key"-->
+<!--            :label="component.text"-->
+<!--            :value="component.value"-->
+<!--        ></v-radio>-->
+<!--      </v-radio-group>-->
+<!--    </v-card>-->
 
     <v-card class="pa-10 my-4">
       <p class="text-subtitle-1" v-for="(component, key) in components" :key="key"> <b>{{ component.value === selected_component ? component.text : '' }}</b> </p>
@@ -54,6 +54,12 @@
       />
       <span v-if="selected_component === 'input'"><b>Output:</b> {{ name }}</span>
 
+      <RNavbarProfileMenu
+          v-if="selected_component === 'navbar_popup'"
+          :options="nav_links"
+          @onLogout="logout"
+      />
+
     </v-card>
   </v-container>
 </template>
@@ -65,6 +71,7 @@ import RLoginForm from "@/components/RLoginForm";
 import RImageCarousel from "@/components/RImageCarousel";
 import RFormTagInput from "@/components/RFormTagInput";
 import RProfileSection from "@/components/RProfileSection";
+import RNavbarProfileMenu from "@/components/RNavbarProfileMenu";
 
 export default {
   name: "ReusableComponents",
@@ -74,11 +81,13 @@ export default {
     RLoginForm,
     RImageCarousel,
     RFormTagInput,
-    RProfileSection
+    RProfileSection,
+    RNavbarProfileMenu
   },
   data() {
     return {
-      selected_component: 'login',
+      show_nav_bar_profile_card: false,
+      selected_component: '',
       components: [
           {value: 'login', text: 'RLoginForm'},
           {value: 'image', text: 'RImageCarousel'},
@@ -86,6 +95,7 @@ export default {
           {value: 'profile', text: 'RProfileSection'},
           {value: 'select', text: 'RSelectInput'},
           {value: 'input', text: 'RTextInput'},
+          {value: 'navbar_popup', text: 'RNavbarProfileMenu'},
       ],
       name: '',
       fruit: '',
@@ -97,7 +107,24 @@ export default {
         {value: 'grapes', text: 'Grapes'},
         {value: 'bananas', text: 'Bananas'},
         {value: 'peaches', text: 'Peaches'},
-      ]
+      ],
+      nav_links: [
+        {
+          to: '/',
+          title: 'Dashboard',
+          icon: 'mdi-view-dashboard-variant',
+        },
+        {
+          to: '#',
+          title: 'My Profile',
+          icon: 'mdi-account',
+        },
+        {
+          to: '#',
+          title: 'Settings',
+          icon: 'mdi-cog',
+        },
+      ],
     }
   },
   methods: {
@@ -109,6 +136,9 @@ export default {
     },
     updateProfile(user) {
       console.log(user,'user from RProfile component')
+    },
+    logout() {
+      console.log('logout from RNavbarProfileMenu component')
     }
   }
 }

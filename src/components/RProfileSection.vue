@@ -99,10 +99,6 @@ export default {
         phone: '+93125478944',
         bio: 'The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.',
       },
-      items: [
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' },
-      ],
     }
   },
   methods: {
