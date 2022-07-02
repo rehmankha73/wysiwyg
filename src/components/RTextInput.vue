@@ -23,6 +23,12 @@ export default {
       modelValue: ''
     }
   },
+
+  // model: {
+  //   prop: 'value',
+  //   event: 'value'
+  // },
+
   props: {
     type: {
       type: String,
