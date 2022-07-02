@@ -73,7 +73,6 @@ export default {
 .input-style{
   width: 100%;
   padding: 5px;
-  margin: 5px;
   border: 1px solid gray;
   border-radius: 10px;
 }

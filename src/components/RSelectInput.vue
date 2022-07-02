@@ -1,6 +1,8 @@
 <template>
   <div>
-    <select class="select-style" :value="value" @change="$emit('value', $event.target.value)">
+    <label :for="label" v-if="label">{{ label }}</label>
+    <select :id="label" class="select-style" :value="value" @change="$emit('value', $event.target.value)">
+      <option value="">Select from the following</option>
       <option v-for="(option, key) in options" :key="key" :value="option.value">{{ option.text }}</option>
     </select>
   </div>
@@ -14,6 +16,9 @@ export default {
     event: ['value']
   },
   props: {
+    label: {
+      type: String,
+    },
     value: {
       type: [String, Number],
     },
@@ -34,7 +39,6 @@ export default {
 .select-style{
   width: 100%;
   padding: 5px;
-  margin: 5px;
   border: 1px solid gray;
   border-radius: 10px;
 }

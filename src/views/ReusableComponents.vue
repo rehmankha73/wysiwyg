@@ -1,63 +1,92 @@
 <template>
   <v-container>
     <h1>Reusable Components!</h1>
-
     <v-card class="pa-10">
+      <v-radio-group v-model="selected_component">
+        <v-radio
+            v-for="(component, key) in components"
+            :key="key"
+            :label="component.text"
+            :value="component.value"
+        ></v-radio>
+      </v-radio-group>
+    </v-card>
 
-<!--      <RProfileSection-->
-<!--          @updateProfile="updateProfile"-->
-<!--      />-->
+    <v-card class="pa-10 my-4">
+      <p class="text-subtitle-1" v-for="(component, key) in components" :key="key"> <b>{{ component.value === selected_component ? component.text : '' }}</b> </p>
 
+      <RLoginForm
+          v-if="selected_component === 'login'"
+          forgotPasswordLink="/"
+          :onSubmit="() => {}"
+          @onSuccess="success()"
+      />
 
-<!--      <RFormTagInput-->
-<!--          @selectItems="getSelectedItem"-->
-<!--      />-->
-<!--      <RImageCarousel />-->
+      <RImageCarousel
+          v-if="selected_component === 'image'"
+      />
 
-<!--      <RLoginForm-->
-<!--          forgotPasswordLink="/"-->
-<!--          :onSubmit="() => {}"-->
-<!--          @onSuccess="success()"-->
-<!--      />-->
+      <RFormTagInput
+          v-if="selected_component === 'tags'"
+          @selectItems="getSelectedItem"
+      />
 
-<!--      {{ name }}-->
-<!--      <RTextInput-->
-<!--          class="my-2"-->
-<!--          v-model="name"-->
-<!--          label="Name"-->
-<!--      />-->
+      <RProfileSection
+          v-if="selected_component === 'profile'"
+          @updateProfile="updateProfile"
+      />
 
-      {{ fruit }}
       <RSelectInput
+          v-if="selected_component === 'select'"
           class="my-2"
           v-model="fruit"
+          label="Name of Favorite Fruit"
           :options="options ? options : []"
       />
+      <span v-if="selected_component === 'select'"><b>Output:</b> {{ fruit }}</span>
+
+      <RTextInput
+          v-if="selected_component === 'input'"
+          class="my-2"
+          v-model="name"
+          label="UserName/Email"
+          placeholder="Please enter username/email"
+      />
+      <span v-if="selected_component === 'input'"><b>Output:</b> {{ name }}</span>
 
     </v-card>
   </v-container>
 </template>
 
 <script>
-// import RTextInput from "@/components/RTextInput";
+import RTextInput from "@/components/RTextInput";
 import RSelectInput from "@/components/RSelectInput";
-// import RLoginForm from "@/components/RLoginForm";
-// import RImageCarousel from "@/components/RImageCarousel";
-// import RFormTagInput from "@/components/RFormTagInput";
-// import RProfileSection from "@/components/RProfileSection";
+import RLoginForm from "@/components/RLoginForm";
+import RImageCarousel from "@/components/RImageCarousel";
+import RFormTagInput from "@/components/RFormTagInput";
+import RProfileSection from "@/components/RProfileSection";
 
 export default {
   name: "ReusableComponents",
   components: {
-    // RTextInput,
+    RTextInput,
     RSelectInput,
-    // RLoginForm,
-    // RImageCarousel,
-    // RFormTagInput,
-    // RProfileSection
+    RLoginForm,
+    RImageCarousel,
+    RFormTagInput,
+    RProfileSection
   },
   data() {
     return {
+      selected_component: 'login',
+      components: [
+          {value: 'login', text: 'RLoginForm'},
+          {value: 'image', text: 'RImageCarousel'},
+          {value: 'tags', text: 'RFormTagInput'},
+          {value: 'profile', text: 'RProfileSection'},
+          {value: 'select', text: 'RSelectInput'},
+          {value: 'input', text: 'RTextInput'},
+      ],
       name: '',
       fruit: '',
       options: [

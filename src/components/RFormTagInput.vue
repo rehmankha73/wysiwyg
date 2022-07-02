@@ -1,90 +1,94 @@
 <template>
-  <section class="container-setting pa-4">
-    <h5>Multiple Tags Selector</h5>
-    <v-text-field
-        id="parent"
-        v-model="items"
-        hide-details
-        label="Tags"
-        placeholder="You can select multiple tags."
-        solo
-    >
-      <template v-slot:append>
-        <v-btn
-            id="test"
-            v-if="items.length > 0"
-            color="primary"
-            icon
-            @click="addInArray"
-        >
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-      </template>
-
-      <template v-slot:prepend-inner>
-        <div v-if="items_array.length > 0" class="d-flex flex-row flex-wrap">
-          <v-chip
-              v-for="(item, key) in items_array"
-              :key="key"
-              class="ma-2"
-              close
+  <div>
+    <section class="container-setting pa-4">
+      <span> By using simple logic! </span>
+      <v-text-field
+          v-model="items"
+          hide-details
+          label="Tags"
+          placeholder="You can select multiple tags."
+          solo
+      >
+        <template v-slot:append>
+          <v-btn
+              v-if="items.length > 0"
               color="primary"
-              text-color="white"
-              @click:close="removeItem(key)"
+              icon
+              @click="addInArray"
           >
-            {{ item }}
-          </v-chip>
-        </div>
-      </template>
-    </v-text-field>
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+      </v-text-field>
+      <div v-if="items_array.length > 0" class="d-flex flex-row flex-wrap">
+        <v-chip
+            v-for="(item, key) in items_array"
+            :key="key"
+            class="ma-2"
+            close
+            color="primary"
+            text-color="white"
+            @click:close="removeItem(key)"
+        >
+          {{ item }}
+        </v-chip>
+      </div>
+    </section>
 
-    <v-combobox
-        v-model="items_array"
-        class="mt-4"
-        label="Tags"
-        placeholder="You can select multiple tags"
-        multiple
-        solo
-        append-icon=""
-        dense
-        :deletable-chips="true"
-        :small-chips="true"
-    ></v-combobox>
-  </section>
+    <section class="container-setting px-4">
+      <span> By using v-comobox! </span>
+      <v-combobox
+          v-model="items_array"
+          :deletable-chips="true"
+          :small-chips="true"
+          append-icon=""
+          class="mt-4"
+          dense
+          label="Tags"
+          multiple
+          placeholder="You can select multiple tags"
+          solo
+      ></v-combobox>
 
-<!--  <section class="border container-setting pa-4">-->
-<!--    <v-text-field-->
-<!--        v-model="items"-->
-<!--        hide-details-->
-<!--        label="Tags"-->
-<!--        placeholder="You can select multiple tags."-->
-<!--        solo-->
-<!--    >-->
-<!--      <template v-slot:append>-->
-<!--        <v-btn-->
-<!--            v-if="items.length > 0"-->
-<!--            color="primary"-->
-<!--            icon-->
-<!--            @click="addInArray"-->
-<!--        >-->
-<!--          <v-icon>mdi-plus</v-icon>-->
-<!--        </v-btn>-->
-<!--      </template>-->
-<!--    </v-text-field>-->
-<!--    <div v-if="items_array.length > 0" class="d-flex flex-row flex-wrap">-->
-<!--      <v-chip-->
-<!--          v-for="(item, key) in items_array"-->
-<!--          :key="key"-->
-<!--          class="ma-2"-->
-<!--          close-->
-<!--          color="primary"-->
-<!--          text-color="white"-->
-<!--          @click:close="removeItem(key)"-->
-<!--      >-->
-<!--        {{ item }}-->
-<!--      </v-chip>-->
-<!--    </div>-->
-<!--  </section>-->
+      <span> By using custom-css & js! </span>
+      <v-text-field
+          id="parent"
+          v-model="items"
+          hide-details
+          label="Tags"
+          placeholder="You can select multiple tags."
+          solo
+      >
+        <template v-slot:append>
+          <v-btn
+              v-if="items.length > 0"
+              id="test"
+              color="primary"
+              icon
+              @click="addInArray"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+
+        <template v-slot:prepend-inner>
+          <div v-if="items_array.length > 0" class="d-flex flex-row flex-wrap">
+            <v-chip
+                v-for="(item, key) in items_array"
+                :key="key"
+                class="ma-2"
+                close
+                color="primary"
+                text-color="white"
+                @click:close="removeItem(key)"
+            >
+              {{ item }}
+            </v-chip>
+          </div>
+        </template>
+      </v-text-field>
+    </section>
+  </div>
 </template>
 
 <script>

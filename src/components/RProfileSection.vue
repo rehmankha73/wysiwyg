@@ -4,7 +4,7 @@
       class="overflow-hidden"
       style="position: relative;"
   >
-    <v-container class="fill-height border">
+    <v-container class="fill-height">
       <v-row
           align="center"
           justify="center"
@@ -91,7 +91,7 @@ export default {
   },
   data () {
     return {
-      drawer: true,
+      drawer: false,
       user: {
         name: 'John Leider',
         position: 'Full Stack Web Developer',
