@@ -60,6 +60,10 @@
           @onLogout="logout"
       />
 
+      <RList
+          :link_list="link_list"
+      />
+
     </v-card>
   </v-container>
 </template>
@@ -72,10 +76,12 @@ import RImageCarousel from "@/components/RImageCarousel";
 import RFormTagInput from "@/components/RFormTagInput";
 import RProfileSection from "@/components/RProfileSection";
 import RNavbarProfileMenu from "@/components/RNavbarProfileMenu";
+import RList from "@/components/RList";
 
 export default {
   name: "ReusableComponents",
   components: {
+    RList,
     RTextInput,
     RSelectInput,
     RLoginForm,
@@ -124,6 +130,23 @@ export default {
           title: 'Settings',
           icon: 'mdi-cog',
         },
+      ],
+      link_list: [
+        { title: 'Dashboard', icon: 'mdi-view-dashboard-variant', to: '/' },
+        { title: 'Dashboard', icon: 'mdi-view-dashboard-variant', to: '/' },
+        { title: 'Users', icon: 'mdi-account-circle', group_items: [
+            {to:'/', title:'Create', icon:'mdi-plus-outline'},
+            {to: '/', title: 'Read', icon: 'mdi-read'},
+            {to: '/', title: 'Update', icon: 'mdi-update'},
+            {to: '/', title: 'Delete', icon: 'mdi-delete'},
+          ]
+        },
+        { title: 'Admin', icon: 'mdi-cog', group_items: [
+            {to:'/', title:'Admins', icon:'mdi-plus-outline'},
+            {to: '/', title: 'Users', icon: 'mdi-read'},
+          ]
+        },
+        { title: 'Dashboard', icon: 'mdi-cog', to: '/' },
       ],
     }
   },
