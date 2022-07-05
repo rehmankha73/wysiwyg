@@ -5,7 +5,7 @@
       style="max-width: 600px"
   >
     <template v-slot:activator="{ on, attrs }">
-      <v-avatar v-bind="attrs" v-on="on">
+      <v-avatar v-bind="attrs" v-on="on" size="36">
         <img :src="user ? user.image : `https://randomuser.me/api/portraits/men/78.jpg`" class="mx-auto rounded"
              height="150"
              width="150"/>

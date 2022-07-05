@@ -1,64 +1,69 @@
 <template>
-  <v-container id="chart">
-    <span class="text-subtitle-1 mb-4">Implementation of Apex-chart in vue components</span>
-    <v-card v-if="false" class="pa-4 my-10">
-      <span class="text-h4"> Line Chart</span>
-      <apexchart
-          :options="line_chart.chartOptions"
-          :series="line_chart.series"
-          class="my-4"
-          height="350"
-          type="line"
-      ></apexchart>
-    </v-card>
+  <div>
+    <section class="pa-6 text-h5" style="background-color: white">Charts</section>
 
-    <v-card v-if="true" class="pa-4 my-10">
-      <span class="text-h4"> Column/Bar Chart</span>
-      <apexchart
-          :options="line_chart.chartOptions"
-          :series="line_chart.series"
-          height="350"
-          type="bar"
-          @animationEnd="test"
+    <v-container id="chart">
+      <span class="text-subtitle-1 mb-4">Implementation of Apex-chart in vue components</span>
+      <v-card v-if="true" class="pa-4 my-10">
+        <span class="text-h4"> Line Chart</span>
+        <apexchart
+            :options="line_chart.chartOptions"
+            :series="line_chart.series"
+            class="my-4"
+            height="350"
+            type="line"
+        ></apexchart>
+      </v-card>
 
-      ></apexchart>
-    </v-card>
+      <v-card v-if="true" class="pa-4 my-10">
+        <span class="text-h4"> Column/Bar Chart</span>
+        <apexchart
+            :options="line_chart.chartOptions"
+            :series="line_chart.series"
+            height="350"
+            type="bar"
+            @animationEnd="test"
 
-    <v-card v-if="false" class="pa-4 my-10">
-      <span class="text-h4"> Area Chart</span>
-      <apexchart
-          :options="line_chart.chartOptions"
-          :series="line_chart.series"
-          height="350"
-          type="area"></apexchart>
-    </v-card>
+        ></apexchart>
+      </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
-      <span class="text-h4"> Column Chart</span>
-      <apexchart :options="column_chart.chartOptions" :series="column_chart.series" height="350" type="bar"></apexchart>
-    </v-card>
+      <v-card v-if="true" class="pa-4 my-10">
+        <span class="text-h4"> Area Chart</span>
+        <apexchart
+            :options="line_chart.chartOptions"
+            :series="line_chart.series"
+            height="350"
+            type="area"></apexchart>
+      </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
-      <span class="text-h4"> Bar Chart</span>
-      <apexchart :options="line_chart.chartOptions" :series="line_chart.series" height="430" type="bar"></apexchart>
-    </v-card>
+      <v-card v-if="true" class="pa-4 my-10">
+        <span class="text-h4"> Column Chart</span>
+        <apexchart :options="column_chart.chartOptions" :series="column_chart.series" height="350"
+                   type="bar"></apexchart>
+      </v-card>
 
-    <v-card v-if="false" class="pa-4 my -10">
-      <span class="text-h4">Mixed Type Chart</span>
-      <apexchart :options="mixed.chartOptions" :series="mixed.series" height="350" type="line"></apexchart>
-    </v-card>
+      <v-card v-if="true" class="pa-4 my-10">
+        <span class="text-h4"> Bar Chart</span>
+        <apexchart :options="line_chart.chartOptions" :series="line_chart.series" height="430" type="bar"></apexchart>
+      </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
-      <span class="text-h4">Pie Type Chart</span>
-      <apexchart :options="pie.chartOptions" :series="pie.series" type="pie" width="380"></apexchart>
-    </v-card>
+      <v-card v-if="true" class="pa-4 my -10">
+        <span class="text-h4">Mixed Type Chart</span>
+        <apexchart :options="mixed.chartOptions" :series="mixed.series" height="350" type="line"></apexchart>
+      </v-card>
 
-    <v-card v-if="false" class="pa-4 my-10">
-      <span class="text-h4">Donut Type Chart</span>
-      <apexchart :options="donut.chartOptions" :series="donut.series" type="donut" width="380"></apexchart>
-    </v-card>
+      <v-card v-if="true" class="pa-4 my-10">
+        <span class="text-h4">Pie Type Chart</span>
+        <apexchart :options="pie.chartOptions" :series="pie.series" type="pie" width="380"></apexchart>
+      </v-card>
 
-  </v-container>
+      <v-card v-if="true" class="pa-4 my-10">
+        <span class="text-h4">Donut Type Chart</span>
+        <apexchart :options="donut.chartOptions" :series="donut.series" type="donut" width="380"></apexchart>
+      </v-card>
+
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -122,8 +127,6 @@ export default {
             title: {
               text: 'Per year Productions of Mangoes in % '
             },
-            min: 0,
-            max: 100,
             // min: Math.min(...api_data.map(d => d.production)),
             // max: Math.max(...api_data.map(d => d.production))
           },
@@ -228,7 +231,7 @@ export default {
           chart: {
             height: 350,
             type: 'line',
-            stacked: false,
+            stacked: true,
           },
           stroke: {
             width: [0, 2, 5],
@@ -243,7 +246,7 @@ export default {
           fill: {
             opacity: [0.85, 0.25, 1],
             gradient: {
-              inverseColors: false,
+              inverseColors: true,
               shade: 'light',
               type: "vertical",
               opacityFrom: 0.85,
@@ -270,8 +273,8 @@ export default {
             min: 0
           },
           tooltip: {
-            shared: true,
-            intersect: false,
+            shared: false,
+            intersect: false  ,
             y: {
               formatter: function (y) {
                 if (typeof y !== "undefined") {
@@ -341,7 +344,7 @@ export default {
           categories: [1, 2, 3, 4, 5, 6, 7],
           position: 'top',
           axisBorder: {
-            show: false
+            show: true
           },
           // categories: [2012,2013,2014,2015,2016,2017,2018],
           // categories: this.years ? this.years : [],

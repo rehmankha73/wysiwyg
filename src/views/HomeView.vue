@@ -1,79 +1,83 @@
 <template>
-  <v-container class="pt-10">
-    <v-card class="mx-auto" style="width: 80%">
-      <v-card-title> Add New Blog</v-card-title>
+  <div>
+    <section class="pa-6 text-h5" style="background-color: white">Home</section>
 
-      <v-container>
-        <v-form ref="form">
-          <v-row>
-            <v-col cols="6">
-              <v-file-input
-                  :rules="[required('Image is required!')]"
-                  accept="image/png, image/jpeg, image/bmp"
-                  counter
-                  placeholder="Pick an Image"
-                  show-size
-                  @change="uploadImage"
-              ></v-file-input>
-            </v-col>
+    <v-container class="pt-10">
+      <v-card class="mx-auto" style="width: 80%">
+        <v-card-title> Add New Blog</v-card-title>
 
-            <v-col v-if="image && image_url" cols="6">
-              <v-img
-                  :src="image_url"
-                  max-height="150"
-                  max-width="250"
-              ></v-img>
-            </v-col>
-          </v-row>
+        <v-container>
+          <v-form ref="form">
+            <v-row>
+              <v-col cols="6">
+                <v-file-input
+                    :rules="[required('Image is required!')]"
+                    accept="image/png, image/jpeg, image/bmp"
+                    counter
+                    placeholder="Pick an Image"
+                    show-size
+                    @change="uploadImage"
+                ></v-file-input>
+              </v-col>
 
-          <v-row>
-            <v-col cols="6">
-              <v-text-field
-                  v-model="title"
-                  :rules="[required('Title is required!')]"
-                  filled
-                  hide-details="auto"
-                  label="Title"
-              ></v-text-field>
-            </v-col>
+              <v-col v-if="image && image_url" cols="6">
+                <v-img
+                    :src="image_url"
+                    max-height="150"
+                    max-width="250"
+                ></v-img>
+              </v-col>
+            </v-row>
 
-            <v-col cols="6">
-              <v-text-field
-                  v-model="slug"
-                  filled
-                  hide-details="auto"
-                  label="Slug"
-              ></v-text-field>
-            </v-col>
-          </v-row>
+            <v-row>
+              <v-col cols="6">
+                <v-text-field
+                    v-model="title"
+                    :rules="[required('Title is required!')]"
+                    filled
+                    hide-details="auto"
+                    label="Title"
+                ></v-text-field>
+              </v-col>
 
-          <v-row>
-            <v-col cols="12">
-              <vue-editor
-                  :class="[!description && hasError? 'invalid' : '']"
-                  v-model="description" ref="editor"
-              />
-              <span style="color:red" v-if="!description && hasError">Description field is also required</span>
-            </v-col>
+              <v-col cols="6">
+                <v-text-field
+                    v-model="slug"
+                    filled
+                    hide-details="auto"
+                    label="Slug"
+                ></v-text-field>
+              </v-col>
+            </v-row>
 
-          </v-row>
+            <v-row>
+              <v-col cols="12">
+                <vue-editor
+                    :class="[!description && hasError? 'invalid' : '']"
+                    v-model="description" ref="editor"
+                />
+                <span style="color:red" v-if="!description && hasError">Description field is also required</span>
+              </v-col>
 
-          <v-row>
-            <v-col class="d-flex justify-end" cols="12">
-              <v-btn
-                  color="primary"
-                  depressed
-                  type="button"
-                  @click="submitForm"
-              >
-                Add Now
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-form>
-      </v-container>
-    </v-card>
-  </v-container>
+            </v-row>
+
+            <v-row>
+              <v-col class="d-flex justify-end" cols="12">
+                <v-btn
+                    color="primary"
+                    depressed
+                    type="button"
+                    @click="submitForm"
+                >
+                  Add Now
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-container>
+      </v-card>
+    </v-container>
+  </div>
 </template>
 
 <script>

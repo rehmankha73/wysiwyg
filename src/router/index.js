@@ -21,7 +21,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/BlogView.vue')
   },
   {
-    path: '/chart',
+    path: '/charts',
     name: 'Chart',
     component: Chart
   },
@@ -29,7 +29,7 @@ const routes = [
     path: '/components',
     name: 'Components',
     component: Reusable,
-  }
+  },
 ]
 
 const router = new VueRouter({
