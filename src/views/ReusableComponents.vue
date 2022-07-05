@@ -61,8 +61,11 @@
       />
 
       <RList
+          v-if="selected_component === 'link_list'"
           :link_list="link_list"
       />
+
+      <RDropDown />
 
     </v-card>
   </v-container>
@@ -77,10 +80,12 @@ import RFormTagInput from "@/components/RFormTagInput";
 import RProfileSection from "@/components/RProfileSection";
 import RNavbarProfileMenu from "@/components/RNavbarProfileMenu";
 import RList from "@/components/RList";
+import RDropDown from "@/components/RDropDown";
 
 export default {
   name: "ReusableComponents",
   components: {
+    RDropDown,
     RList,
     RTextInput,
     RSelectInput,
@@ -92,6 +97,12 @@ export default {
   },
   data() {
     return {
+      loading: false,
+      attrs: {
+        class: 'mb-6',
+        boilerplate: false,
+        elevation: 2,
+      },
       show_nav_bar_profile_card: false,
       selected_component: '',
       components: [
@@ -102,6 +113,7 @@ export default {
           {value: 'select', text: 'RSelectInput'},
           {value: 'input', text: 'RTextInput'},
           {value: 'navbar_popup', text: 'RNavbarProfileMenu'},
+          {value: 'link_list', text: 'RList'},
       ],
       name: '',
       fruit: '',
@@ -149,6 +161,11 @@ export default {
         { title: 'Dashboard', icon: 'mdi-cog', to: '/' },
       ],
     }
+  },
+  mounted() {
+    this.loading = true
+    setTimeout(() => { this.loading = false}, 5000)
+
   },
   methods: {
     success() {
