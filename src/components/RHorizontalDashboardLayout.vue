@@ -15,15 +15,15 @@
 
       <ul class="d-flex" style="list-style: none;">
 
-        <router-link class="mx-2 text-white" to="/">
+        <router-link class="mx-2 text-white" style="text-decoration: none" to="/">
           <li>Home</li>
         </router-link>
 
-        <router-link class="mx-2 text-white" to="/charts">
+        <router-link class="mx-2 text-white" style="text-decoration: none" to="/charts">
           <li>Charts</li>
         </router-link>
 
-        <router-link class="mx-2 text-white" to="/components">
+        <router-link class="mx-2 text-white" style="text-decoration: none" to="/components">
           <li>Components</li>
         </router-link>
       </ul>
@@ -61,7 +61,6 @@ ul{
 }
 
 li{
-  list-style: none;
   text-decoration: none;
   color: white
 }
