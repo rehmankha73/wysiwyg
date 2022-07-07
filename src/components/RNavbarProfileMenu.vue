@@ -1,7 +1,10 @@
 <template>
   <v-menu
       absolute
-      offset-y
+      :nudge-top="nudgeTop"
+      :nudge-bottom="nudgeBottom"
+      :nudge-left="nudgeLeft"
+      :nudge-right="nudgeRight"
       style="max-width: 600px"
   >
     <template v-slot:activator="{ on, attrs }">
@@ -56,10 +59,71 @@
 <script>
 export default {
   name: "RNavbarProfileMenu",
-  data() {
-    return {}
-  },
+  computed: {
+    nudgeTop() {
+      if (this.$vuetify.breakpoint.smAndUp) {
+        switch (this.position) {
+          case 'left-top':
+            return 0;
+          case 'left-bottom':
+            return 10;
+          case 'right-bottom':
+            return 0;
+          case 'right-top':
+            return 0;
+        }
+      }
+      return 0;
+    },
 
+    nudgeBottom() {
+      if (this.$vuetify.breakpoint.smAndUp) {
+        switch (this.position) {
+          case 'left-top':
+            return 0;
+          case 'left-bottom':
+            return 0;
+          case 'right-bottom':
+            return 0;
+          case 'right-top':
+            return 50;
+        }
+      }
+      return 0;
+    },
+
+    nudgeRight() {
+      if (this.$vuetify.breakpoint.smAndUp) {
+        switch (this.position) {
+          case 'left-top':
+            return 0;
+          case 'left-bottom':
+            return 50;
+          case 'right-bottom':
+            return 0;
+          case 'right-top':
+            return 0;
+        }
+      }
+      return 0;
+    },
+
+    nudgeLeft() {
+      if (this.$vuetify.breakpoint.smAndUp) {
+        switch (this.position) {
+          case 'left-top':
+            return 0;
+          case 'left-bottom':
+            return 0;
+          case 'right-bottom':
+            return 0;
+          case 'right-top':
+            return 50;
+        }
+      }
+      return 0;
+    },
+  },
   props: {
     user: {
       type: Object,
@@ -69,6 +133,10 @@ export default {
       type: Array,
       default: () => {
       },
+    },
+    position: {
+      type: String,
+      default: 'left-bottom'
     }
   }
 }
