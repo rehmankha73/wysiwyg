@@ -1,19 +1,19 @@
 <template>
   <div>
-    <section class="pa-6 text-h5" style="background-color: white">Compenents</section>
+    <section class="pa-6 text-h5" style="background-color: white">Components</section>
 
     <v-container>
       <h1>Reusable Components!</h1>
-          <v-card class="pa-10">
-            <v-radio-group v-model="selected_component">
-              <v-radio
-                  v-for="(component, key) in components"
-                  :key="key"
-                  :label="component.text"
-                  :value="component.value"
-              ></v-radio>
-            </v-radio-group>
-          </v-card>
+      <!--          <v-card class="pa-10">-->
+      <!--            <v-radio-group v-model="selected_component">-->
+      <!--              <v-radio-->
+      <!--                  v-for="(component, key) in components"-->
+      <!--                  :key="key"-->
+      <!--                  :label="component.text"-->
+      <!--                  :value="component.value"-->
+      <!--              ></v-radio>-->
+      <!--            </v-radio-group>-->
+      <!--          </v-card>-->
 
       <v-card class="pa-10 my-4">
         <p v-for="(component, key) in components" :key="key" class="text-subtitle-1">
@@ -73,6 +73,32 @@
             v-if="selected_component === 'drop_down'"
         />
 
+        <RPagination v-if="false"/>
+
+        <DataTable
+            :loader="loadData"
+            :headers="headers"
+            title="Users"
+            :allow-add="false"
+            @done="$router.back()"
+            :default_pagination="false"
+            @searchData="searchData"
+            :showSearch="false"
+        >
+<!--          <template #primary-action>-->
+<!--            <v-text-field-->
+<!--                v-model="search"-->
+<!--                solo-->
+<!--                label="Search anything..."-->
+<!--                dense-->
+<!--                hide-details-->
+<!--                @click:append="reloadData"-->
+<!--                @change="reloadData"-->
+<!--            />-->
+<!--          </template>-->
+        </DataTable>
+
+
       </v-card>
     </v-container>
   </div>
@@ -88,10 +114,15 @@ import RProfileSection from "@/components/RProfileSection";
 import RNavbarProfileMenu from "@/components/RNavbarProfileMenu";
 import RList from "@/components/RList";
 import RDropDown from "@/components/RDropDown";
+import RPagination from "@/components/RPagination";
+import DataTable from "@/components/DataTable";
+import {products} from "@/api/data";
 
 export default {
   name: "ReusableComponents",
   components: {
+    DataTable,
+    RPagination,
     RDropDown,
     RList,
     RTextInput,
@@ -104,6 +135,22 @@ export default {
   },
   data() {
     return {
+      search: null,
+      searchResult: [],
+      headers: [
+        {
+          text: 'Id',
+          value: 'id',
+          sortable: true,
+          width: 150
+        },
+        {
+          text: 'Item',
+          value: 'title',
+          sortable: true,
+          width: 200
+        },
+      ],
       loading: false,
       attrs: {
         class: 'mb-6',
@@ -111,7 +158,7 @@ export default {
         elevation: 2,
       },
       show_nav_bar_profile_card: false,
-      selected_component: 'login',
+      selected_component: '',
       components: [
         {value: 'login', text: 'RLoginForm'},
         {value: 'image', text: 'RImageCarousel'},
@@ -178,8 +225,18 @@ export default {
       this.loading = false
     }, 5000)
 
+    this.reloadData();
   },
   methods: {
+    reloadData() {
+      document.getElementById('refresh').click()
+    },
+    searchData(query) {
+      console.log(query, 'test')
+      console.log(products.data.filter(product => product.title.match(query)))
+      this.searchResult = products.data.filter(product => product.title.match(query))
+      console.log(this.searchResult)
+    },
     success() {
       console.log('onSuccess from RLoginForm component')
     },
@@ -191,6 +248,17 @@ export default {
     },
     logout() {
       console.log('logout from RNavbarProfileMenu component')
+    },
+    loadData() {
+      if (this.searchResult && this.searchResult.length > 0) {
+        console.log('from load')
+        return {
+          page: products.page,
+          data: this.searchResult
+        }
+      }
+      return products;
+
     }
   }
 }
